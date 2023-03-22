@@ -63,7 +63,7 @@ export default {
   },
   methods: {
     initFun () {
-      this.watchMoveEle.onmousemove = (e) => {
+      this.watchMoveEle.documentElement.addEventListener('mousemove', (e)=>{
         if (this.showLayer && this.startMove && e.clientY > 0) {
           // console.log('move', e)
           // 根据鼠标上一次和当前位置的位移计算移动距离
@@ -89,15 +89,15 @@ export default {
           this.clientX = e.clientX
           this.clientY = e.clientY
         }
-      }
-      this.watchMoveEle.onmouseup = (e) => {
+      })
+      this.watchMoveEle.documentElement.addEventListener('mouseup', (e) => {
         // 鼠标抬起, 不再监听(不再跟随移动)
         if (this.showLayer && this.startMove) {
           this.clientX = e.clientX
           this.clientY = e.clientY
           this.startMove = false
         }
-      }
+      })
       // 初始化位置计算
       if (this.closeToLeft) {
         this.leftValue = 20
